@@ -1,0 +1,225 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: cyan;
+    padding: 30px;
+}
+
+.container {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    background: white;
+    padding: 40px 30px;
+    perspective: 2800px;
+}
+
+.container .cover {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 50%;
+    z-index: 98;
+    transition: all 1s ease;
+    transform-style: preserve-3d;
+    transform-origin: left;
+}
+
+.container .cover::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #7d2ae8;
+    opacity: 0.5;
+    z-index: 100;
+}
+
+.container #flip:checked~.cover {
+    transform: rotateY(-180deg);
+}
+
+.container .cover img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 12;
+    backface-visibility: none;
+}
+
+.container .cover .text {
+    position: absolute;
+    z-index: 111;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover .text .text-1,
+.cover .text .text-2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    backface-visibility: hidden;
+}
+
+.cover .text .text-2 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.container form {
+    height: 100%;
+    width: 100%;
+}
+
+form .form-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-content .login-form,
+.form-content .signup-form {
+    width: calc(100% / 2 - 35px);
+    margin-left: 10px;
+    /* background: red; */
+}
+
+form .form-content .title {
+    position: relative;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+form .form-content .input-boxes {
+    margin-top: 30px;
+}
+
+form .form-content .title::before {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 25px;
+    left: 0;
+    bottom: 0;
+    background: red;
+}
+
+form .signup-form .title::before {
+    width: 20px;
+}
+
+form .form-content .input-box {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 10px 10px;
+    position: relative;
+}
+
+form .form-content .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+form .form-content .input-box i {
+    color: blueviolet;
+    font-size: 17px;
+    position: absolute;
+}
+
+/* form .form-content .input-box input:focus, */
+form .form-content .input-box input:focus {
+    border-color: blueviolet;
+}
+
+form .form-content .button {
+    color: white;
+    margin-top: 40px;
+}
+
+form .form-content .button input {
+    color: white;
+    background: #7d2ae8;
+    border-radius: 6px;
+    font-size: larger;
+    padding: 0px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form .form-content .button input:hover {
+    background: #5b13b9;
+}
+
+form .form-content .text {
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+form .form-content .text a {
+    text-decoration: none;
+}
+
+form .form-content .text a:hover {
+    text-decoration: underline;
+}
+
+form .form-content .text label {
+    color: #5b13b9;
+    cursor: pointer;
+}
+
+form .form-content .text label:hover {
+    text-decoration: underline;
+}
+
+.container #flip {
+    display: none;
+}
+
+@media (max-width:750px) {
+    .container .cover {
+        display: none;
+    }
+
+    .form-content .login-form,
+    .form-content .signup-form {
+        width: 100%;
+    }
+    .form-content .signup-form{
+        display: none;
+    }
+
+    .container #flip:checked ~ form .signup-form{
+        display: block;
+    }
+
+    .container #flip:checked ~ form .login-form{
+        display: none;
+    }
+}
